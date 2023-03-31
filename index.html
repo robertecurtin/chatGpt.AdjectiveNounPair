@@ -15,13 +15,19 @@
   <script>
     function generatePair() {
       // Get the input noun from the user
-      const noun = document.getElementById("nounInput").value.toLowerCase()
+      const noun = document.getElementById("nounInput").value.trim()
+
+      // Capitalize the first letter of the input noun
+      const capitalizedNoun = noun.charAt(0).toUpperCase() + noun.slice(1)
 
       // Select a random adjective that starts with the same letter as the noun
       const adj = getAdjectiveStartingWith(noun.charAt(0))
 
+      // Capitalize the first letter of the adjective
+      const capitalizedAdj = adj.charAt(0).toUpperCase() + adj.slice(1)
+
       // Display the random pair
-      document.getElementById("pair").innerHTML = adj + " " + noun
+      document.getElementById("pair").innerHTML = capitalizedAdj + " " + capitalizedNoun
     }
 
     function getAdjectiveStartingWith(letter) {
