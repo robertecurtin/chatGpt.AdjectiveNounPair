@@ -41,7 +41,8 @@
       const adjStartingWithLetter = adjArray.filter(adj => adj.charAt(0).toLowerCase() === letter)
 
       // Select a random adjective that starts with the given letter
-      return adjStartingWithLetter[Math.floor(Math.random() * adjStartingWithLetter.length)]
+      const defaultAdj = 'awesome' // set a default adjective
+      return adjStartingWithLetter.length > 0 ? adjStartingWithLetter[Math.floor(Math.random() * adjStartingWithLetter.length)] : defaultAdj
     }
 
     function loadTextFile(file) {
