@@ -67,7 +67,7 @@
       const capitalizedNoun = noun.charAt(0).toUpperCase() + noun.slice(1)
 
       // Select a random adjective that starts with the same letter as the noun
-      const adj = getAdjectiveStartingWith(noun.charAt(0))
+      const adj = getAdjectiveStartingWith(noun.charAt(0).toLowerCase())
 
       // Capitalize the first letter of the adjective
       const capitalizedAdj = adj.charAt(0).toUpperCase() + adj.slice(1)
