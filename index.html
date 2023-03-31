@@ -18,9 +18,17 @@
       const adjArray = adjectives.split('\n')
       const nounArray = nouns.split('\n')
 
-      // Select a random adjective and noun
-      const adj = adjArray[Math.floor(Math.random() * adjArray.length)]
-      const noun = nounArray[Math.floor(Math.random() * nounArray.length)]
+      // Select a random starting letter
+      const letters = 'abcdefghijklmnopqrstuvwxyz'
+      const letter = letters.charAt(Math.floor(Math.random() * letters.length))
+
+      // Filter the adjective and noun lists to only include words that start with the selected letter
+      const adjStartingWithLetter = adjArray.filter(adj => adj.charAt(0).toLowerCase() === letter)
+      const nounStartingWithLetter = nounArray.filter(noun => noun.charAt(0).toLowerCase() === letter)
+
+      // Select a random adjective and noun that start with the selected letter
+      const adj = adjStartingWithLetter[Math.floor(Math.random() * adjStartingWithLetter.length)]
+      const noun = nounStartingWithLetter[Math.floor(Math.random() * nounStartingWithLetter.length)]
 
       // Display the random pair
       document.getElementById("pair").innerHTML = adj + " " + noun
