@@ -1,37 +1,41 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Random Adjective-Noun Pair</title>
+  <title>Random Adjective for Noun</title>
 </head>
 <body>
-  <h1>Random Adjective-Noun Pair</h1>
-  <p id="pair"></p>
+  <h1>Random Adjective for Noun</h1>
+  <label for="nounInput">Enter a noun:</label>
+  <input type="text" id="nounInput">
+  <br>
   <button onclick="generatePair()">Generate Pair</button>
+  <br><br>
+  <p id="pair"></p>
 
   <script>
     function generatePair() {
-      // Load the adjective and noun lists from local files
-      const adjectives = loadTextFile('adjectives.txt')
-      const nouns = loadTextFile('nouns.txt')
+      // Get the input noun from the user
+      const noun = document.getElementById("nounInput").value.toLowerCase()
 
-      // Split the adjective and noun lists into arrays
-      const adjArray = adjectives.split('\n')
-      const nounArray = nouns.split('\n')
-
-      // Select a random starting letter
-      const letters = 'abcdefghijklmnopqrstuvwxyz'
-      const letter = letters.charAt(Math.floor(Math.random() * letters.length))
-
-      // Filter the adjective and noun lists to only include words that start with the selected letter
-      const adjStartingWithLetter = adjArray.filter(adj => adj.charAt(0).toLowerCase() === letter)
-      const nounStartingWithLetter = nounArray.filter(noun => noun.charAt(0).toLowerCase() === letter)
-
-      // Select a random adjective and noun that start with the selected letter
-      const adj = adjStartingWithLetter[Math.floor(Math.random() * adjStartingWithLetter.length)]
-      const noun = nounStartingWithLetter[Math.floor(Math.random() * nounStartingWithLetter.length)]
+      // Select a random adjective that starts with the same letter as the noun
+      const adj = getAdjectiveStartingWith(noun.charAt(0))
 
       // Display the random pair
       document.getElementById("pair").innerHTML = adj + " " + noun
+    }
+
+    function getAdjectiveStartingWith(letter) {
+      // Load the adjective list from a local file
+      const adjectives = loadTextFile('adjectives.txt')
+
+      // Split the adjective list into an array
+      const adjArray = adjectives.split('\n')
+
+      // Filter the adjective list to only include words that start with the given letter
+      const adjStartingWithLetter = adjArray.filter(adj => adj.charAt(0).toLowerCase() === letter)
+
+      // Select a random adjective that starts with the given letter
+      return adjStartingWithLetter[Math.floor(Math.random() * adjStartingWithLetter.length)]
     }
 
     function loadTextFile(file) {
