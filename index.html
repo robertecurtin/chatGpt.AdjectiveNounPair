@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Random Adjective-Noun Pair</title>
+</head>
+<body>
+  <h1>Random Adjective-Noun Pair</h1>
+  <p id="pair"></p>
+  <button onclick="generatePair()">Generate Pair</button>
+
+  <script>
+    function generatePair() {
+      // Load the adjective and noun lists from local files
+      const adjectives = loadTextFile('adjectives.txt')
+      const nouns = loadTextFile('nouns.txt')
+
+      // Split the adjective and noun lists into arrays
+      const adjArray = adjectives.split('\n')
+      const nounArray = nouns.split('\n')
+
+      // Select a random adjective and noun
+      const adj = adjArray[Math.floor(Math.random() * adjArray.length)]
+      const noun = nounArray[Math.floor(Math.random() * nounArray.length)]
+
+      // Display the random pair
+      document.getElementById("pair").innerHTML = adj + " " + noun
+    }
+
+    function loadTextFile(file) {
+      const xhr = new XMLHttpRequest()
+      xhr.open('GET', file, false)
+      xhr.send(null)
+      return xhr.responseText
+    }
+  </script>
+</body>
+</html>
